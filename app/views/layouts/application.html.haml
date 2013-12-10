@@ -1,0 +1,25 @@
+!!!
+%html{"ng-app" => ""}
+  %head
+    %title Palacart
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  %body
+    = content_tag :div, :class => "navbar navbar-inverse" do
+      = content_tag :div, :class => "navbar-inner"  do
+        = content_tag :div, :class => "container-fluid" do
+          = link_to "PalaCart", "/", :style => "color: #FFFFFF;", :class => "brand"
+          - if user_signed_in?
+            = content_tag :div, :class => "pull-right" do
+              = link_to 'Sign Out', "/logout", :style => "color: #FFFFFF;", :class => "brand pull-right"
+          - else
+            = content_tag :div, :class => "pull-right" do
+              = link_to 'Sign In', new_user_session_path, :class => "brand pull-right", :style => "color: #FFFFFF;"
+    = content_tag :div, :class => "clearfix", :id => "main-content" do
+      = content_tag :div, :class => "clearfix", :id => "page-content" do
+        .span8
+          = content_tag :div, :class => "clearfix", :id => "main-content" do
+            = content_tag :div, :class => "clearfix", :id => "page-content" do
+              .well.well-large
+                = yield
